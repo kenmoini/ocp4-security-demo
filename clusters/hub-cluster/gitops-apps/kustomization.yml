@@ -12,3 +12,4 @@ resources:
   - loki-operator.yml
   - netobserv-operator.yml
   - loki-instance.yml
+  - netobserv-instance.yml
