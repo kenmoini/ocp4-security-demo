@@ -35,4 +35,4 @@ spec:
   placement:
     placementRef:
       kind: Placement
-      name: rhacs-config-local-cluster # this is placed on the local hub cluster to set up a RHACM Policy that is then applied to other clusters
+      name: local-cluster # this is placed on the local hub cluster to set up a RHACM Policy that is then applied to other clusters
