@@ -5,7 +5,7 @@ metadata:
   name: loki-operator
   namespace: openshift-operators-redhat
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   channel: PATCH_ME
   installPlanApproval: Automatic
