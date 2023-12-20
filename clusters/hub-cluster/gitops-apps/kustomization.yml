@@ -9,4 +9,5 @@ resources:
   - lso-config.yml
   - odf-operator.yml
   - odf-config.yml
+  - loki-operator.yml
   - netobserv-operator.yml
