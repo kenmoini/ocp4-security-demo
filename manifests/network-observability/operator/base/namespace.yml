@@ -7,3 +7,10 @@ metadata:
     openshift.io/cluster-monitoring: 'true'
   annotations:
     argocd.argoproj.io/sync-wave: "0"
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: netobserv
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"

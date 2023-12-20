@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: lso-config
+  name: loki-instance
   namespace: openshift-gitops
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "10"
     argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   ignoreDifferences:
@@ -25,7 +25,7 @@ spec:
     repoURL: 'https://github.com/kenmoini/ocp4-security-demo.git'
     targetRevision: HEAD
     ## Path is the repo directory that containers the cluster(s) configuration and deployment manifests
-    path: clusters/hub-cluster/config/lso/
+    path: manifests/loki-operator/instance/
     ## Enable recursive sub-directory search to enable management of multiple cluster from this single Application
     #directory:
     #  recurse: true

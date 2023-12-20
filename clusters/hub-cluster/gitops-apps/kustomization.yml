@@ -11,3 +11,4 @@ resources:
   - odf-config.yml
   - loki-operator.yml
   - netobserv-operator.yml
+  - loki-instance.yml
