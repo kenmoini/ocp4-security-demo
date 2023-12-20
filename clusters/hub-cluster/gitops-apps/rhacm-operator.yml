@@ -22,7 +22,7 @@ spec:
   source:
     kustomize:
       version: v4.4.1
-    repoURL: 'https://github.com/kenmoini/gitops-for-you-and-me.git'
+    repoURL: 'https://github.com/kenmoini/ocp4-security-demo.git'
     targetRevision: HEAD
     ## Path is the repo directory that containers the cluster(s) configuration and deployment manifests
     path: manifests/rhacm/operator/overlays/release-2.9/
