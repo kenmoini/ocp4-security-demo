@@ -7,3 +7,4 @@ resources:
   - rhacm-instance.yml
   - local-storage-operator.yml
   - lso-config.yml
+  - odf-operator.yml
