@@ -23,11 +23,7 @@ spec:
   overrides:
     components:
       - enabled: true
-        name: multiclusterhub-repo
-      - enabled: true
         name: search
-      - enabled: true
-        name: management-ingress
       - enabled: true
         name: console
       - enabled: true
@@ -44,6 +40,14 @@ spec:
         name: cluster-proxy-addon
       - enabled: false
         name: cluster-backup
+      - enabled: true
+        name: app-lifecycle
+      - enabled: true
+        name: cluster-permission
+      - enabled: true
+        name: multicluster-observability
+      - enabled: true
+        name: submariner-addon
 # https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.6/html/install/installing#installing-on-infra-node
   tolerations:
     - effect: NoSchedule
