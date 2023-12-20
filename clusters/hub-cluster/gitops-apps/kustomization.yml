@@ -8,3 +8,4 @@ resources:
   - local-storage-operator.yml
   - lso-config.yml
   - odf-operator.yml
+  - odf-config.yml
