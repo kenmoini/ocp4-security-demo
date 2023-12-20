@@ -1,0 +1,23 @@
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: worker
+  name: 50-worker-configure-crypto-policy
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    systemd:
+      units:
+        - name: configure-crypto-policy.service
+          enabled: true
+          contents: |
+            [Unit]
+            Before=kubelet.service
+            [Service]
+            Type=oneshot
+            ExecStart=update-crypto-policies --set DEFAULT:NO-SHA1 RemainAfterExit=yes
+            [Install]
+            WantedBy=multi-user.target

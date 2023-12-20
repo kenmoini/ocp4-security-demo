@@ -1,3 +1,4 @@
+---
 apiVersion: cluster.open-cluster-management.io/v1beta2
 kind: ManagedClusterSet
 metadata:
@@ -8,6 +9,20 @@ metadata:
     - cluster.open-cluster-management.io/managedclusterset-clusterrole
     - cluster.open-cluster-management.io/submariner-cleanup
   name: hub-cluster
+spec:
+  clusterSelector:
+    selectorType: ExclusiveClusterSetLabel
+---
+apiVersion: cluster.open-cluster-management.io/v1beta2
+kind: ManagedClusterSet
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+    cluster.open-cluster-management.io/submariner-broker-ns: spoke-clusters-broker
+  finalizers:
+    - cluster.open-cluster-management.io/managedclusterset-clusterrole
+    - cluster.open-cluster-management.io/submariner-cleanup
+  name: spoke-clusters
 spec:
   clusterSelector:
     selectorType: ExclusiveClusterSetLabel

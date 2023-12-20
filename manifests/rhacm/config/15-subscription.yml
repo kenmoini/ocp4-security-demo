@@ -17,3 +17,22 @@ spec:
     placementRef:
       kind: Placement
       name: rhacs-config-local-cluster
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: Subscription
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    apps.open-cluster-management.io/git-branch: main
+    apps.open-cluster-management.io/git-path: manifests/e8/
+    apps.open-cluster-management.io/reconcile-option: merge
+  labels:
+    app: ocp4-security-demo
+  name: e8-compliance-patch
+  namespace: rhacm-config
+spec:
+  channel: rhacm-config/github-ocp4-security
+  placement:
+    placementRef:
+      kind: Placement
+      name: rhacs-config-local-cluster # this is placed on the local hub cluster to set up a RHACM Policy that is then applied to other clusters

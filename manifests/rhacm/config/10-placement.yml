@@ -19,3 +19,22 @@ spec:
                 - 'true'
   clusterSets:
     - hub-cluster
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  labels:
+    app: ocp4-security-demo
+  name: e8-compliance
+  namespace: rhacm-config
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  predicates:
+    - requiredClusterSelector:
+        labelSelector:
+          matchExpressions:
+            - key: 'e8-compliance'
+              operator: 'In'
+              values: 
+                - 'true'

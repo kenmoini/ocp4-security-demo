@@ -1,0 +1,24 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: e8-compliance-patch-pg
+  #annotations:
+  #  argocd.argoproj.io/compare-options: IgnoreExtraneous
+placementBindingDefaults:
+  name: e8-compliance-pg-pb
+policyDefaults:
+  #namespace: rhacm-rhacs-config
+  namespace: rhacm-config
+  # Use the name of an existing placement rule
+  placement:
+    placementRuleName: e8-compliance
+  remediationAction: enforce
+  severity: high
+  consolidateManifests: false # Put each object in its own ConfigurationPolicy in the Policy
+  pruneObjectBehavior: "DeleteIfCreated"
+  #policySets:
+  #  - rhacs-operator
+policies:
+  - name: e8-compliance-patch
+    manifests:
+      - path: manifests

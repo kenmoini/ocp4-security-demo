@@ -1,0 +1,15 @@
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: worker
+  name: 99-worker-sshd-hardening-config
+spec:
+  files:
+  - path: /etc/ssh/sshd_config.d/99-openshift-sshd-hardening.conf
+    mode: 0644
+    overwrite: true
+    contents:
+      inline: |
+        PermitEmptyPasswords no

@@ -14,3 +14,19 @@ spec:
   pathname: 'https://github.com/kenmoini/rhacm-config-for-rhacs'
   # https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.7/html/applications/managing-applications#insecure-http-server
   insecureSkipVerify: true
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: Channel
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+    apps.open-cluster-management.io/reconcile-rate: medium
+  name: github-ocp4-security
+  namespace: rhacm-config
+  labels:
+    app: ocp4-security-demo
+spec:
+  type: Git
+  pathname: 'https://github.com/kenmoini/ocp4-security-demo'
+  # https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.7/html/applications/managing-applications#insecure-http-server
+  insecureSkipVerify: true

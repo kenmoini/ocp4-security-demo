@@ -1,0 +1,7 @@
+generators:
+  - policygenerator.yaml
+commonLabels:
+  manifest-group: e8-compliance-patch
+  app: ocp4-security-demo
+commonAnnotations:
+  argocd.argoproj.io/compare-options: IgnoreExtraneous

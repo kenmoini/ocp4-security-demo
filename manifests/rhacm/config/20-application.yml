@@ -1,3 +1,4 @@
+---
 apiVersion: app.k8s.io/v1beta1
 kind: Application
 metadata:
@@ -18,3 +19,24 @@ spec:
         operator: In
         values:
           - rhacm-rhacs-config
+---
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+  labels:
+    app: ocp4-security-demo
+  name: ocp4-security-demo
+  namespace: rhacm-config
+spec:
+  componentKinds:
+    - group: apps.open-cluster-management.io
+      kind: Subscription
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - ocp4-security-demo
