@@ -13,6 +13,6 @@ metadata:
 spec:
   additionalConfig:
     bucketclass: noobaa-default-bucket-class
-  objectBucketName: loki-storage-bucket
+  objectBucketName: obc-netobserv-loki-storage-bucket
   bucketName: obc-netobserv-loki-storage-bucket
   storageClassName: openshift-storage.noobaa.io
