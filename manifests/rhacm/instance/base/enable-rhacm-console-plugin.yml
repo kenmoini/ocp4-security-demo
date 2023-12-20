@@ -1,0 +1,125 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: enable-rhacm-console-plugin
+  namespace: open-cluster-management
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: enable-rhacm-console-plugin
+  annotations:
+    argocd.argoproj.io/sync-wave: "15"
+rules:
+  - apiGroups: ["operator.openshift.io"]
+    resources:
+      - consoles
+    verbs:
+      - get
+      - list
+      - patch
+      - label
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: enable-rhacm-console-plugin
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
+subjects:
+  - kind: ServiceAccount
+    name: enable-rhacm-console-plugin
+    namespace: open-cluster-management
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: enable-rhacm-console-plugin
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: enable-rhacm-console-plugin
+  annotations:
+    argocd.argoproj.io/sync-wave: "30"
+spec:
+  template:
+    spec:
+      containers:
+        - name: labeler
+          image: registry.redhat.io/openshift4/ose-cli
+          env:
+            - name: PLUGIN_NAME
+              value: 'acm'
+          command:
+            - /bin/bash
+            - -c
+            - |
+                echo "Attempting to enable ${PLUGIN_NAME} plugin"
+                echo ""
+
+                # Create the plugins section on the object if it doesn't exist
+                if [ -z $(oc get consoles.operator.openshift.io cluster -o=jsonpath='{.spec.plugins}') ]; then
+                  echo "Creating plugins object"
+                  oc patch consoles.operator.openshift.io cluster --patch '{ "spec": { "plugins": [] } }' --type=merge
+                fi
+
+                INSTALLED_PLUGINS=$(oc get consoles.operator.openshift.io cluster -o=jsonpath='{.spec.plugins}')
+                echo "Current plugins:"
+                echo ${INSTALLED_PLUGINS}
+
+                if [[ "${INSTALLED_PLUGINS}" == *"${PLUGIN_NAME}"* ]]; then
+                    echo "${PLUGIN_NAME} is already enabled"
+                else
+                    echo "Enabling plugin: ${PLUGIN_NAME}"
+                    oc patch consoles.operator.openshift.io cluster --type=json --patch '[{"op": "add", "path": "/spec/plugins/-", "value": "'${PLUGIN_NAME}'"}]'
+                fi
+      restartPolicy: Never
+      serviceAccount: enable-rhacm-console-plugin
+      serviceAccountName: enable-rhacm-console-plugin
+  backoffLimit: 4
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: enable-mce-console-plugin
+  annotations:
+    argocd.argoproj.io/sync-wave: "35"
+spec:
+  template:
+    spec:
+      containers:
+        - name: labeler
+          image: registry.redhat.io/openshift4/ose-cli
+          env:
+            - name: PLUGIN_NAME
+              value: 'mce'
+          command:
+            - /bin/bash
+            - -c
+            - |
+                echo "Attempting to enable ${PLUGIN_NAME} plugin"
+                echo ""
+
+                # Create the plugins section on the object if it doesn't exist
+                if [ -z $(oc get consoles.operator.openshift.io cluster -o=jsonpath='{.spec.plugins}') ]; then
+                  echo "Creating plugins object"
+                  oc patch consoles.operator.openshift.io cluster --patch '{ "spec": { "plugins": [] } }' --type=merge
+                fi
+
+                INSTALLED_PLUGINS=$(oc get consoles.operator.openshift.io cluster -o=jsonpath='{.spec.plugins}')
+                echo "Current plugins:"
+                echo ${INSTALLED_PLUGINS}
+
+                if [[ "${INSTALLED_PLUGINS}" == *"${PLUGIN_NAME}"* ]]; then
+                    echo "${PLUGIN_NAME} is already enabled"
+                else
+                    echo "Enabling plugin: ${PLUGIN_NAME}"
+                    oc patch consoles.operator.openshift.io cluster --type=json --patch '[{"op": "add", "path": "/spec/plugins/-", "value": "'${PLUGIN_NAME}'"}]'
+                fi
+      restartPolicy: Never
+      serviceAccount: enable-rhacm-console-plugin
+      serviceAccountName: enable-rhacm-console-plugin
+  backoffLimit: 4
