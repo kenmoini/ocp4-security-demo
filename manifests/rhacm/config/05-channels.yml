@@ -1,0 +1,15 @@
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: Channel
+metadata:
+  annotations:
+    apps.open-cluster-management.io/reconcile-rate: medium
+  name: github-rhacm-for-rhacs
+  namespace: rhacm-rhacs-config
+  labels:
+    app: rhacm-rhacs-config
+spec:
+  type: Git
+  pathname: 'https://github.com/kenmoini/rhacm-config-for-rhacs'
+  # https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.7/html/applications/managing-applications#insecure-http-server
+  insecureSkipVerify: true

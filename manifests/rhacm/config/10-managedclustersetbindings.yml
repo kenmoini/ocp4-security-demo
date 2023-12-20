@@ -1,0 +1,16 @@
+---
+apiVersion: cluster.open-cluster-management.io/v1beta2
+kind: ManagedClusterSetBinding
+metadata:
+  namespace: local-cluster
+  name: hub-cluster
+spec:
+  clusterSet: hub-cluster
+---
+apiVersion: cluster.open-cluster-management.io/v1beta2
+kind: ManagedClusterSetBinding
+metadata:
+  namespace: rhacm-rhacs-config
+  name: hub-cluster
+spec:
+  clusterSet: hub-cluster

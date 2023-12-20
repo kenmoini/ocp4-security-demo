@@ -1,0 +1,19 @@
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+  labels:
+    app: rhacm-rhacs-config
+  name: rhacs-config
+  namespace: rhacm-rhacs-config
+spec:
+  componentKinds:
+    - group: apps.open-cluster-management.io
+      kind: Subscription
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - rhacm-rhacs-config

@@ -40,10 +40,10 @@ spec:
       path: rhacm-config/policies/
     - kustomize:
         version: v5.1.0
-      repoURL: 'https://github.com/kenmoini/rhacm-config-for-rhacs.git'
+      repoURL: 'https://github.com/kenmoini/ocp4-security-demo.git'
       targetRevision: main
       ## Path is the repo directory that containers the cluster(s) configuration and deployment manifests
-      path: rhacm-config/policy-generator/
+      path: manifests/rhacm/config/
   project: local-cluster
   syncPolicy:
     syncOptions:

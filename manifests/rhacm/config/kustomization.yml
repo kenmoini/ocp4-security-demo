@@ -1,0 +1,13 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - 00-hub-cluster-set.yml
+  #- 01-ca-configmap.yaml
+  - 05-channels.yml
+  #- 10-placementrules.yml
+  - 15-subscription.yml
+  - 20-application.yml
+  - 10-placement.yml
+  - 10-managedclustersetbindings.yml
