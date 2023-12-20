@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
   - rhacm-operator.yml
   - rhacm-instance.yml
+  - local-storage-operator.yml
