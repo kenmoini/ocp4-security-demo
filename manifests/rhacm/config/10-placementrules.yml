@@ -6,6 +6,8 @@ metadata:
   namespace: rhacm-rhacs-config
   labels:
     app: rhacm-rhacs-config
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   clusterSelector:
     matchLabels:

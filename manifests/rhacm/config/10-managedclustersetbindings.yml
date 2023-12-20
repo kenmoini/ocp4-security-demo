@@ -4,6 +4,8 @@ kind: ManagedClusterSetBinding
 metadata:
   namespace: local-cluster
   name: hub-cluster
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   clusterSet: hub-cluster
 ---
@@ -12,5 +14,7 @@ kind: ManagedClusterSetBinding
 metadata:
   namespace: rhacm-rhacs-config
   name: hub-cluster
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   clusterSet: hub-cluster

@@ -1,0 +1,74 @@
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+  name: 'open-cluster-management:subscription-admin'
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: 'open-cluster-management:subscription-admin'
+subjects:
+
+  - kind: ServiceAccount
+    name: multicluster-applications
+    namespace: open-cluster-management
+  - kind: ServiceAccount
+    name: multiclusterhub-operator
+    namespace: open-cluster-management
+  - kind: ServiceAccount
+    name: multicluster-operators
+    namespace: open-cluster-management
+
+  - kind: ServiceAccount
+    name: application-manager
+    namespace: open-cluster-management-agent-addon
+  - kind: ServiceAccount
+    name: governance-policy-framework-sa
+    namespace: open-cluster-management-agent-addon
+  - kind: ServiceAccount
+    name: iam-policy-controller-sa
+    namespace: open-cluster-management-agent-addon
+  - kind: ServiceAccount
+    name: cert-policy-controller-sa
+    namespace: open-cluster-management-agent-addon
+  - kind: ServiceAccount
+    name: cluster-proxy
+    namespace: open-cluster-management-agent-addon
+  - kind: ServiceAccount
+    name: config-policy-controller-sa
+    namespace: open-cluster-management-agent-addon
+  - kind: ServiceAccount
+    name: klusterlet-addon-workmgr
+    namespace: open-cluster-management-agent-addon
+
+  - kind: ServiceAccount
+    name: openshift-gitops-argocd-application-controller
+    namespace: openshift-gitops
+  - kind: ServiceAccount
+    name: openshift-gitops-applicationset-controller
+    namespace: openshift-gitops
+
+  - kind: ServiceAccount
+    name: default
+    namespace: openshift-gitops
+  - kind: ServiceAccount
+    name: gitops-service-cluster
+    namespace: openshift-gitops
+  - kind: ServiceAccount
+    name: openshift-gitops-argocd-dex-server
+    namespace: openshift-gitops
+  - kind: ServiceAccount
+    name: openshift-gitops-argocd-server
+    namespace: openshift-gitops
+
+  - kind: User
+    apiGroup: rbac.authorization.k8s.io
+    name: kubeadmin
+  - kind: User
+    apiGroup: rbac.authorization.k8s.io
+    name: kube:admin
+
+  - kind: User
+    apiGroup: rbac.authorization.k8s.io
+    name: kemo

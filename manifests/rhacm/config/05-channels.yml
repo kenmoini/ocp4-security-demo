@@ -3,6 +3,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: Channel
 metadata:
   annotations:
+    argocd.argoproj.io/sync-wave: "1"
     apps.open-cluster-management.io/reconcile-rate: medium
   name: github-rhacm-for-rhacs
   namespace: rhacm-rhacs-config

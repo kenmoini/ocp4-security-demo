@@ -2,6 +2,7 @@ apiVersion: app.k8s.io/v1beta1
 kind: Application
 metadata:
   annotations:
+    argocd.argoproj.io/sync-wave: "4"
     argocd.argoproj.io/compare-options: IgnoreExtraneous
   labels:
     app: rhacm-rhacs-config

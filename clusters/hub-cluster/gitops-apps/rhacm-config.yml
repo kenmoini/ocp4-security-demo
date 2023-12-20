@@ -47,7 +47,9 @@ spec:
   project: local-cluster
   syncPolicy:
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
+      - RespectIgnoreDifferences=true
+      - ServerSideApply=true
     automated:
       prune: true
       allowEmpty: true

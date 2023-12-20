@@ -6,6 +6,8 @@ metadata:
     app: rhacm-rhacs-config
   name: rhacs-config-local-cluster
   namespace: rhacm-rhacs-config
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   predicates:
     - requiredClusterSelector:
