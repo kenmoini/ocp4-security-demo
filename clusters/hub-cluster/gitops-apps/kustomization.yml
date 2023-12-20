@@ -13,3 +13,4 @@ resources:
   - netobserv-operator.yml
   - loki-instance.yml
   - netobserv-instance.yml
+  - rhacm-config.yml
