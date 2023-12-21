@@ -4,8 +4,8 @@ metadata:
   name: netobserv-instance
   namespace: openshift-gitops
   annotations:
+    argocd.argoproj.io/sync-wave: "30"
     argocd.argoproj.io/compare-options: IgnoreExtraneous
-    argocd.argoproj.io/sync-wave: "10"
 spec:
   ignoreDifferences:
     - group: "*"
