@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: curler
+  labels:
+    app: curler
+  namespace: test-curl
+spec:
+  securityContext:
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+    - name: curler
+      image: registry.redhat.io/openshift4/ose-cli
+      resources:
+        limits:
+          memory: "64Mi"
+          cpu: "250m"
+        requests:
+          memory: "64Mi"
+          cpu: "100m"
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+      command:
+            - /bin/bash
+            - -c
+            - |
+              while true; do
+                curl -k https://kenmoini.com
+                sleep 10
+              done
