@@ -17,6 +17,10 @@ spec:
       kind: "Namespace"
       jsonPointers:
         - /metadata/labels
+    - group: "console.openshift.io"
+      kind: "ConsolePlugin"
+      jsonPointers:
+        - /spec/service/basePath
   destination:
     server: 'https://kubernetes.default.svc'
   source:
@@ -32,6 +36,9 @@ spec:
     #  recurse: true
   project: local-cluster
   syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - RespectIgnoreDifferences=true
     automated:
       prune: true
       allowEmpty: true
