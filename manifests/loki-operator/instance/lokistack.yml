@@ -10,7 +10,7 @@ spec:
   size: 1x.small
   storage:
     tls:
-      caName: loki-s3-ca
+      caName: openshift-service-ca.crt
     schemas:
     - version: v12
       effectiveDate: '2022-06-01'
