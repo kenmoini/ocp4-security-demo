@@ -46,7 +46,7 @@ spec:
   arbiter: {}
   nodeTopologies: {}
   externalStorage: {}
-  version: 4.14.0
+  version: 4.13.0
   flexibleScaling: true
   # https://access.redhat.com/articles/6408481
   placement:
