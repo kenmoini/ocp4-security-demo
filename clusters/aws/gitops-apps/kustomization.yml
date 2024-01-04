@@ -1,0 +1,16 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - rhacm-operator.yml # 0
+  - local-storage-operator.yml # 0
+  - odf-operator.yml # 0
+  - loki-operator.yml # 0
+  - netobserv-operator.yml # 0
+  #- lso-config.yml # 5
+  - odf-config.yml # 10
+  - rhacm-instance.yml # 15
+  - rhacm-config.yml # 20
+  - loki-instance.yml # 25
+  - netobserv-instance.yml #30

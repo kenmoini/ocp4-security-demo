@@ -23,6 +23,7 @@ oc apply -k bootstrap/openshift-gitops/instance/outbound-proxy/
 
 # Configure the GitOps Server
 oc apply -k bootstrap/openshift-gitops/config/
+oc apply -k clusters/aws/bootstrap/config/ # on AWS
 
 # Set the default storage class
 oc annotate --overwrite storageclass/ocs-storagecluster-ceph-rbd storageclass.kubernetes.io/is-default-class="true"
