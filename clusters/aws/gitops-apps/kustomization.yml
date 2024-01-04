@@ -4,7 +4,7 @@ kind: Kustomization
 
 resources:
   - rhacm-operator.yml # 0
-  - local-storage-operator.yml # 0
+  #- local-storage-operator.yml # 0
   - odf-operator.yml # 0
   - loki-operator.yml # 0
   - netobserv-operator.yml # 0
