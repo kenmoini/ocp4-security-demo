@@ -6,3 +6,4 @@ resources:
   - storagecluster.yml
   - storagesystem.yml
   - rook-configmap.yml
+  - default-storageclass-job.yml
